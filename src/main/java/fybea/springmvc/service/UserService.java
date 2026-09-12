@@ -1,5 +1,6 @@
 package fybea.springmvc.service;
 
+import fybea.springmvc.exception.ResourceNotFoundException;
 import fybea.springmvc.model.UserDto;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,9 @@ public class UserService {
 
 
     public UserDto findById(Long id) {
+        if (!users.containsKey(id)) {
+            throw new ResourceNotFoundException("User not found with id: " + id);
+        }
         return users.get(id);
     }
 
@@ -37,6 +41,9 @@ public class UserService {
     }
 
     public void delete(Long id) {
+        if (!users.containsKey(id)) {
+            throw new ResourceNotFoundException("User not found with id: " + id);
+        }
         users.remove(id);
     }
 }

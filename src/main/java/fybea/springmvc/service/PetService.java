@@ -1,5 +1,6 @@
 package fybea.springmvc.service;
 
+import fybea.springmvc.exception.ResourceNotFoundException;
 import fybea.springmvc.model.PetDto;
 import fybea.springmvc.model.UserDto;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,9 @@ public class PetService {
 
 
     public PetDto findById(Long id) {
+        if (!pets.containsKey(id)) {
+            throw new ResourceNotFoundException("Pet not found with id: " + id);
+        }
         return pets.get(id);
     }
 

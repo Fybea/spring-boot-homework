@@ -12,9 +12,9 @@ import lombok.NoArgsConstructor;
 public class PetDto {
 
     private Long id;
-    @NotNull
+    @NotNull(message = "should be not empty")
     @Size(min = 1, max = 50)
     private String name;
-    @NotNull
+    @NotNull(message = "should be not empty")
     private Long userId;
 }
